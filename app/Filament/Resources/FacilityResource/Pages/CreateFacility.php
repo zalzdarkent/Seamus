@@ -14,12 +14,4 @@ class CreateFacility extends CreateRecord
     {
         return $this->getResource()::getUrl('index');
     }
-
-    protected function afterSave(): void
-    {
-        Notification::make()
-            ->title('Data berhasil ditambahkan')
-            ->success()
-            ->send();
-    }
 }

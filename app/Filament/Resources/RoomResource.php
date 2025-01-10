@@ -43,9 +43,9 @@ class RoomResource extends Resource
                         ->maxSize(5120)
                         ->acceptedFileTypes(['image/jpeg', 'image/png'])
                         ->deleteUploadedFileUsing(function ($file, $record) {
-                            // Hapus file lama dari storage
-                            if ($record && $record->photo && $file !== $record->photo) {
-                                Storage::delete($record->photo);
+                            // Pastikan file lama terhapus saat gambar diganti
+                            if ($record && $record->photo && $record->photo !== $file) {
+                                Storage::disk('public')->delete($record->photo);
                             }
                         }),
                     Forms\Components\TextInput::make('price_per_hour')
@@ -75,7 +75,7 @@ class RoomResource extends Resource
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('photo')
                     ->label('Photo')
-                    ->width(80) // Lebar kolom dalam piksel
+                    ->width(100) // Lebar kolom dalam piksel
                     ->height(80),
                 Tables\Columns\TextColumn::make('price_per_hour')
                     ->label('Price Per Hour')

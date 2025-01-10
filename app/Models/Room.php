@@ -26,15 +26,16 @@ class Room extends Model
                 Storage::disk('public')->delete($room->photo);
             }
         });
-
-        static::updating(function ($room) {
-            // Periksa jika atribut 'photo' berubah
-            if ($room->isDirty('photo')) {
-                $oldPhoto = $room->getOriginal('photo');
-                if ($oldPhoto) {
-                    Storage::delete($oldPhoto);
-                }
-            }
-        });
     }
 }
+
+
+// static::updating(function ($room) {
+        //     // Periksa jika atribut 'photo' berubah
+        //     if ($room->isDirty('photo')) {
+        //         $oldPhoto = $room->getOriginal('photo');
+        //         if ($oldPhoto) {
+        //             Storage::delete($oldPhoto);
+        //         }
+        //     }
+        // });

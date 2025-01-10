@@ -43,8 +43,8 @@ class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->spa()
-            ->databaseNotifications()
-            ->databaseNotificationsPolling('30s')
+            // ->databaseNotifications()
+            // ->databaseNotificationsPolling('30s')
             // ->spaUrlExceptions(fn (): array => [
             //     url('/admin'),
             //     // PostResource::getUrl(),
