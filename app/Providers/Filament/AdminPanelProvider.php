@@ -31,13 +31,15 @@ class AdminPanelProvider extends PanelProvider
                 'danger' => Color::Rose,
                 'gray' => Color::Gray,
                 'info' => Color::Blue,
-                'primary' => Color::Indigo,
+                'primary' => 'rgb(99, 102, 241)',
                 'success' => Color::Emerald,
                 'warning' => Color::Orange,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->sidebarCollapsibleOnDesktop()
+            ->brandName('Seamus')
+            ->font('Poppins')
             // ->sidebarFullyCollapsibleOnDesktop()
             ->pages([
                 Pages\Dashboard::class,
@@ -54,7 +56,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
+                // Widgets\AccountWidget::class,
                 // Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([

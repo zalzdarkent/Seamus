@@ -17,16 +17,18 @@ class EditRoom extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
-
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $record = $this->record;
 
-        // Hapus gambar lama jika diganti
         if ($record->photo && $record->photo !== $data['photo']) {
             Storage::disk('public')->delete($record->photo);
         }
 
         return $data;
+    }
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
     }
 }

@@ -26,38 +26,41 @@ class RoomResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Card::make([
-                    Forms\Components\TextInput::make('name')
-                        ->label('Room Name')
-                        ->required()
-                        ->maxLength(255),
-                    Forms\Components\TextInput::make('category')
-                        ->label('Category')
-                        ->required()
-                        ->maxLength(255),
-                    Forms\Components\FileUpload::make('photo')
-                        ->label('Photo')
-                        ->required()
-                        ->image()
-                        ->directory('rooms/photos') // Simpan di folder rooms/photos
-                        ->visibility('public')
-                        ->maxSize(5120)
-                        ->acceptedFileTypes(['image/jpeg', 'image/png'])
-                        ->deleteUploadedFileUsing(function ($file, $record) {
-                            // Pastikan file lama terhapus saat gambar diganti
-                            if ($record && $record->photo && $record->photo !== $file) {
-                                Storage::disk('public')->delete($record->photo);
-                            }
-                        }),
-                    Forms\Components\TextInput::make('price_per_hour')
-                        ->label('Price Per Hour')
-                        ->required()
-                        ->numeric(),
-                    Forms\Components\MultiSelect::make('facilities')
-                        ->label('Facilities')
-                        ->relationship('facilities', 'name') // Relasi dengan facilities
-                        ->options(Facility::all()->pluck('name', 'id'))
-                        ->required(),
-                ])->columnSpan('full'), // Membuat Card full-width
+                    Forms\Components\Grid::make(2) // Menentukan grid dengan 2 kolom
+                        ->schema([
+                            Forms\Components\TextInput::make('name')
+                                ->label('Room Name')
+                                ->required()
+                                ->maxLength(255),
+                            Forms\Components\TextInput::make('category')
+                                ->label('Category')
+                                ->required()
+                                ->maxLength(255),
+                            Forms\Components\FileUpload::make('photo')
+                                ->label('Photo')
+                                ->required()
+                                ->image()
+                                ->directory('rooms/photos') // Simpan di folder rooms/photos
+                                ->visibility('public')
+                                ->maxSize(5120)
+                                ->acceptedFileTypes(['image/jpeg', 'image/png'])
+                                ->deleteUploadedFileUsing(function ($file, $record) {
+                                    // Pastikan file lama terhapus saat gambar diganti
+                                    if ($record && $record->photo && $record->photo !== $file) {
+                                        Storage::disk('public')->delete($record->photo);
+                                    }
+                                }),
+                            Forms\Components\TextInput::make('price_per_hour')
+                                ->label('Price Per Hour')
+                                ->required()
+                                ->numeric(),
+                            Forms\Components\MultiSelect::make('facilities')
+                                ->label('Facilities')
+                                ->relationship('facilities', 'name') // Relasi dengan facilities
+                                ->options(Facility::all()->pluck('name', 'id'))
+                                ->required(),
+                        ]),
+                ]),
             ]);
     }
 
@@ -76,7 +79,7 @@ class RoomResource extends Resource
                 Tables\Columns\ImageColumn::make('photo')
                     ->label('Photo')
                     ->width(100) // Lebar kolom dalam piksel
-                    ->height(80),
+                    ->height(100),
                 Tables\Columns\TextColumn::make('price_per_hour')
                     ->label('Price Per Hour')
                     ->toggleable(isToggledHiddenByDefault: true)
