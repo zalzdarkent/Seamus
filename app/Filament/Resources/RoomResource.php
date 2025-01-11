@@ -20,9 +20,10 @@ class RoomResource extends Resource
 {
     protected static ?string $model = Room::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-home';
+    protected static ?string $navigationIcon = 'heroicon-o-home-modern';
     protected static ?string $recordTitleAttribute = 'name';
-
+    protected static ?string $navigationGroup = 'Facilities';
+    protected static bool $isLazy = false;
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();

@@ -11,7 +11,11 @@ class StatsRoomOverview extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Musical Instrument', Room::query()->count())
+            Stat::make('Studio Rooms', Room::query()->count())
         ];
+    }
+    protected function getHeading(): ?string
+    {
+        return 'Total Studio Rooms';
     }
 }

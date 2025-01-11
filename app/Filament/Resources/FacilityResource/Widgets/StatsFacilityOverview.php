@@ -14,4 +14,8 @@ class StatsFacilityOverview extends BaseWidget
             Stat::make('Musical Instrument', Facility::query()->count())
         ];
     }
+    protected function getHeading(): ?string
+    {
+        return 'Total Musical Instrument';
+    }
 }

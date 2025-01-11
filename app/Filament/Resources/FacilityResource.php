@@ -21,6 +21,7 @@ class FacilityResource extends Resource
     protected static ?string $model = Facility::class;
     protected static ?string $recordTitleAttribute = 'name';
     protected static ?string $navigationIcon = 'heroicon-o-musical-note';
+    protected static ?string $navigationGroup = 'Facilities';
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
