@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\FacilityResource\Pages;
 use App\Filament\Resources\FacilityResource\RelationManagers;
+use App\Filament\Widgets\StatsFacilitiesOverview;
 use App\Models\Facility;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
@@ -12,18 +13,24 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class FacilityResource extends Resource
 {
     protected static ?string $model = Facility::class;
-
+    protected static ?string $recordTitleAttribute = 'name';
     protected static ?string $navigationIcon = 'heroicon-o-musical-note';
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
     }
-
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        return [
+            'Unit' => $record->qty,
+        ];
+    }
     public static function form(Form $form): Form
     {
         return $form

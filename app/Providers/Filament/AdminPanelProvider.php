@@ -40,6 +40,7 @@ class AdminPanelProvider extends PanelProvider
             ->sidebarCollapsibleOnDesktop()
             ->brandName('Seamus')
             ->font('Poppins')
+            ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
             // ->sidebarFullyCollapsibleOnDesktop()
             ->pages([
                 Pages\Dashboard::class,

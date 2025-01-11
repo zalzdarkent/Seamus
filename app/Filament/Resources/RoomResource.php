@@ -14,13 +14,29 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Model;
 
 class RoomResource extends Resource
 {
     protected static ?string $model = Room::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-home';
+    protected static ?string $recordTitleAttribute = 'name';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'category', 'photo', 'price_per_hour'];
+    }
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        return [
+            'Category' => $record->category,
+        ];
+    }
     public static function form(Form $form): Form
     {
         return $form
@@ -82,7 +98,6 @@ class RoomResource extends Resource
                     ->height(100),
                 Tables\Columns\TextColumn::make('price_per_hour')
                     ->label('Price Per Hour')
-                    ->toggleable(isToggledHiddenByDefault: true)
                     ->formatStateUsing(fn($state) => 'Rp ' . number_format($state, 0, ',', '.')), // Atur ke mata uang sesuai kebutuhan
                 Tables\Columns\TagsColumn::make('facilities.name')
                     ->label('Facilities')
