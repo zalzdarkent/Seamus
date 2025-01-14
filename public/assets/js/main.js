@@ -38,9 +38,7 @@
 
 	var carousel = function() {
 		$('.carousel-testimony').owlCarousel({
-			center: true,
-			loop: true,
-			items:1,
+			center: false,
 			margin: 30,
 			stagePadding: 0,
 			nav: false,
@@ -58,9 +56,7 @@
 			}
 		});
 		$('.carousel-properties').owlCarousel({
-			center: true,
-			loop: true,
-			items:1,
+			center: false,
 			margin: 30,
 			stagePadding: 0,
 			nav: false,

@@ -32,14 +32,14 @@ class AdminPanelProvider extends PanelProvider
                 'danger' => Color::Rose,
                 'gray' => Color::Gray,
                 'info' => Color::Blue,
-                'primary' => 'rgb(99, 102, 241)',
+                'primary' => Color::Green,
                 'success' => Color::Emerald,
                 'warning' => Color::Orange,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->sidebarCollapsibleOnDesktop()
-            ->brandName('Seamus')
+            ->brandName('Ceria Music')
             ->font('Poppins')
             ->userMenuItems([
                 MenuItem::make()
