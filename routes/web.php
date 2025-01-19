@@ -7,4 +7,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AppController::class, 'index'])->name('index');
 Route::get('/booking/{id}', [BookingController::class, 'create'])->name('booking');
-
+Route::post('/booking', [BookingController::class, 'booking'])->name('proses.booking');
+Route::get('/booking/invoice/{id}', [BookingController::class, 'invoice']);

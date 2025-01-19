@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('phone'); // Nomor telepon
             $table->date('date'); // Tanggal pemesanan
             $table->enum('status', ['Unpaid', 'Paid']); // Tanggal pemesanan
+            $table->integer('total_amount'); // Nomor telepon
             $table->time('start_time'); // Waktu mulai
             $table->time('end_time'); // Waktu selesai
             $table->timestamps();

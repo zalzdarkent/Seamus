@@ -23,7 +23,7 @@ class RoomResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-home-modern';
     protected static ?string $recordTitleAttribute = 'name';
     protected static ?string $navigationGroup = 'Facilities';
-    protected static bool $isLazy = false;
+    // protected static bool $isLazy = false;
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
@@ -74,7 +74,10 @@ class RoomResource extends Resource
                             Forms\Components\MultiSelect::make('facilities')
                                 ->label('Facilities')
                                 ->relationship('facilities', 'name') // Relasi dengan facilities
-                                ->options(Facility::all()->pluck('name', 'id'))
+                                ->options(Facility::all()->pluck('name', 'id')->mapWithKeys(function ($name, $id) {
+                                    $facility = Facility::find($id); // Ambil data fasilitas berdasarkan ID
+                                    return [$id => $name . ' (' . $facility->qty . ')']; // Gabungkan name dan qty
+                                }))
                                 ->required(),
                         ]),
                 ]),
