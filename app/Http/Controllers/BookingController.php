@@ -115,8 +115,9 @@ class BookingController extends Controller
             return view('checkout', compact('snapToken', 'booking', 'room'));
         } catch (\Exception $e) {
             DB::rollback();
+            Log::error('Booking Error: ' . $e->getMessage()); // Log error
             return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan, coba lagi nanti.']);
-        }
+        }        
     }
 
     public function callback(Request $request)
