@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 class ReceivedChart extends ChartWidget
 {
-    protected static ?string $heading = 'Received Chart';
+    protected static ?string $heading = 'Yearly Revenue';
 
     protected function getData(): array
     {

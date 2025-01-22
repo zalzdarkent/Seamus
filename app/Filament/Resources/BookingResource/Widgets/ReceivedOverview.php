@@ -19,4 +19,8 @@ class ReceivedOverview extends BaseWidget
     {
         return 'Total Received';
     }
+    protected function getColumns(): int
+    {
+        return 2; // Menjadikan layout menjadi dua kolom
+    }
 }

@@ -14,7 +14,7 @@
                             <a href="{{ route('booking', ['id' => $room->id]) }}" class="img"
                                 style="background-image: url('{{ asset('storage/' . $room->photo) }}');">
                                 <div class="rent-sale">
-                                    <span class="sale">Sale</span>
+                                    <span class="sale text-white bg-success px-2 py-1 rounded">Available</span>
                                 </div>
                                 <p class="price"><span class="orig-price">Rp
                                         {{ number_format($room->price_per_hour, 0, ',', '.') }}/jam</span></p>
