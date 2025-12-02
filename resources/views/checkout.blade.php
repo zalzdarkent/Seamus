@@ -17,7 +17,7 @@
                 <!-- Bagian Gambar Ruangan (Kiri) -->
                 <div class="col-md-6">
                     <div class="card shadow-lg p-4">
-                        <h2 class="text-center">Ruangan</h2>
+                        <h2 class="text-center">Ruangan {{ $room->name }}</h2>
                         <img src="{{ asset('storage/' . $room->photo) }}" class="img-fluid rounded">
                     </div>
                 </div>

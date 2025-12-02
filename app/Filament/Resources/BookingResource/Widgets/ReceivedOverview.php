@@ -11,7 +11,7 @@ class ReceivedOverview extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Total Received', 'Rp ' . number_format(Booking::query()->sum('total_amount'), 0, ',', '.'))
+            Stat::make('Total Received', 'Rp ' . number_format(Booking::where('status', 'Paid')->sum('total_amount'), 0, ',', '.'))
         ];
     }
 

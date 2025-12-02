@@ -12,8 +12,9 @@ class DailyRevenueChart extends ChartWidget
 
     protected function getData(): array
     {
-        // Ambil data dari 7 hari terakhir
+        // Ambil data dari 7 hari terakhir (hanya status Paid)
         $data = Booking::query()
+            ->where('status', 'Paid')
             ->whereDate('created_at', '>=', Carbon::now()->subDays(6))
             ->groupByRaw('DATE(created_at)')
             ->selectRaw('DATE(created_at) as date, SUM(total_amount) as total')

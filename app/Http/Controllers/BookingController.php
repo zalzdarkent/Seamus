@@ -92,18 +92,17 @@ class BookingController extends Controller
             // Commit transaksi
             DB::commit();
 
+            Log::info('Starting Midtrans configuration...');
+            
             \Midtrans\Config::$serverKey = config('midtrans.server_key');
-            // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
             \Midtrans\Config::$isProduction = false;
-            // Set sanitization on (default)
             \Midtrans\Config::$isSanitized = true;
-            // Set 3DS transaction for credit card to true
             \Midtrans\Config::$is3ds = true;
 
             $params = [
                 'transaction_details' => [
-                    'order_id' => 'BOOK-' . $booking->id, // Membuat order ID unik
-                    'gross_amount' => $totalAmount, // Jumlah total yang harus dibayar
+                    'order_id' => 'BOOK-' . $booking->id,
+                    'gross_amount' => (int)$totalAmount, // Convert to integer
                 ],
                 'customer_details' => [
                     'first_name' => $validated['name'],
@@ -111,19 +110,32 @@ class BookingController extends Controller
                 ],
             ];
 
-            $snapToken = \Midtrans\Snap::getSnapToken($params);
-            return view('checkout', compact('snapToken', 'booking', 'room'));
+            // Log the request parameters
+            Log::info('Midtrans Request Parameters:', $params);
+            Log::info('Midtrans Server Key:', ['key' => config('midtrans.server_key')]);
+
+            try {
+                $snapToken = \Midtrans\Snap::getSnapToken($params);
+                Log::info('Midtrans Snap Token generated successfully:', ['token' => $snapToken]);
+                return view('checkout', compact('snapToken', 'booking', 'room'));
+            } catch (\Exception $mtEx) {
+                Log::error('Midtrans Error: ' . $mtEx->getMessage());
+                DB::rollback();
+                throw $mtEx;
+            }
         } catch (\Exception $e) {
             DB::rollback();
-            Log::error('Booking Error: ' . $e->getMessage()); // Log error
+            Log::error('Booking Error: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan, coba lagi nanti.']);
-        }        
+        }
     }
 
     public function callback(Request $request)
     {
         $serverKey = config('midtrans.server_key');
         $hashed = hash('sha512', $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
+
+        $response = ['status' => 'error', 'message' => 'Invalid signature'];
 
         if ($hashed == $request->signature_key) {
             if ($request->transaction_status == 'capture') {
@@ -132,11 +144,17 @@ class BookingController extends Controller
 
                 if ($order) {
                     $order->update(['status' => 'Paid']);
+                    $response = ['status' => 'success', 'message' => 'Payment successful', 'order_id' => $orderId];
                 } else {
                     Log::error("Booking dengan ID {$orderId} tidak ditemukan.");
+                    $response = ['status' => 'error', 'message' => 'Order not found', 'order_id' => $orderId];
                 }
+            } else {
+                $response = ['status' => 'error', 'message' => 'Transaction status not capture', 'transaction_status' => $request->transaction_status];
             }
         }
+
+        return response()->json($response);
     }
 
     public function invoice($id)

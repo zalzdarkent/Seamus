@@ -12,8 +12,9 @@ class ReceivedChart extends ChartWidget
 
     protected function getData(): array
     {
-        // Mengambil data total_amount per bulan
-        $data = Booking::selectRaw('SUM(total_amount) as total, MONTH(created_at) as month')
+        // Mengambil data total_amount per bulan (hanya status Paid)
+        $data = Booking::where('status', 'Paid')
+            ->selectRaw('SUM(total_amount) as total, MONTH(created_at) as month')
             ->groupBy('month')
             ->orderBy('month')
             ->get();

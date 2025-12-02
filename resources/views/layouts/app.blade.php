@@ -11,7 +11,11 @@
         @include('include.navbar')
     </nav>
     <!-- END nav -->
-    <section id="hero" class="hero-wrap" style="background-image: url('https://8e48-36-50-94-1.ngrok-free.app/assets/images/abbey_road.jpg');"
+    {{-- <section id="hero" class="hero-wrap" style="background-image: url('{{ asset('assets/images/abbey_road.jpg') }}');"
+        data-stellar-background-ratio="0.5">
+        @include('include.hero')
+    </section> --}}
+    <section id="hero" class="hero-wrap" style="background-image: url('https://3df0-182-0-236-50.ngrok-free.app/assets/images/abbey_road.jpg');"
         data-stellar-background-ratio="0.5">
         @include('include.hero')
     </section>

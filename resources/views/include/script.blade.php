@@ -1,17 +1,19 @@
-<script src="https://8e48-36-50-94-1.ngrok-free.app/assets/js/jquery.min.js"></script>
-<script src="https://8e48-36-50-94-1.ngrok-free.app/assets/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="https://8e48-36-50-94-1.ngrok-free.app/assets/js/popper.min.js"></script>
-<script src="https://8e48-36-50-94-1.ngrok-free.app/assets/js/bootstrap.min.js"></script>
-<script src="https://8e48-36-50-94-1.ngrok-free.app/assets/js/jquery.easing.1.3.js"></script>
-<script src="https://8e48-36-50-94-1.ngrok-free.app/assets/js/jquery.waypoints.min.js"></script>
-<script src="https://8e48-36-50-94-1.ngrok-free.app/assets/js/jquery.stellar.min.js"></script>
-<script src="https://8e48-36-50-94-1.ngrok-free.app/assets/js/owl.carousel.min.js"></script>
-<script src="https://8e48-36-50-94-1.ngrok-free.app/assets/js/jquery.magnific-popup.min.js"></script>
-<script src="https://8e48-36-50-94-1.ngrok-free.app/assets/js/jquery.animateNumber.min.js"></script>
-<script src="https://8e48-36-50-94-1.ngrok-free.app/assets/js/scrollax.min.js"></script>
-<script src="https://8e48-36-50-94-1.ngrok-free.app/assets/js/google-map.js"></script>
-<script src="https://8e48-36-50-94-1.ngrok-free.app/assets/js/main.js"></script>
-<!-- <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+{{-- <script src="https://3df0-182-0-236-50.ngrok-free.app/assets/js/jquery.min.js"></script> --}}
+{{-- <script src="https://3df0-182-0-236-50.ngrok-free.app/assets/js/jquery-migrate-3.0.1.min.js"></script> --}}
+{{-- <script src="https://3df0-182-0-236-50.ngrok-free.app/assets/js/popper.min.js"></script> --}}
+{{-- <script src="https://3df0-182-0-236-50.ngrok-free.app/assets/js/bootstrap.min.js"></script> --}}
+{{-- <script src="https://3df0-182-0-236-50.ngrok-free.app/assets/js/jquery.easing.1.3.js"></script> --}}
+{{-- <script src="https://3df0-182-0-236-50.ngrok-free.app/assets/js/jquery.waypoints.min.js"></script> --}}
+{{-- <script src="https://3df0-182-0-236-50.ngrok-free.app/assets/js/jquery.stellar.min.js"></script> --}}
+{{-- <script src="https://3df0-182-0-236-50.ngrok-free.app/assets/js/owl.carousel.min.js"></script> --}}
+{{-- <script src="https://3df0-182-0-236-50.ngrok-free.app/assets/js/jquery.magnific-popup.min.js"></script> --}}
+{{-- <script src="https://3df0-182-0-236-50.ngrok-free.app/assets/js/jquery.animateNumber.min.js"></script> --}}
+{{-- <script src="https://3df0-182-0-236-50.ngrok-free.app/assets/js/scrollax.min.js"></script> --}}
+{{-- <script src="https://3df0-182-0-236-50.ngrok-free.app/assets/js/google-map.js"></script> --}}
+{{-- <script src="https://3df0-182-0-236-50.ngrok-free.app/assets/js/main.js"></script> --}}
+
+
+<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery-migrate-3.0.1.min.js') }}"></script>
 <script src="{{ asset('assets/js/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
@@ -22,8 +24,8 @@
 <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.animateNumber.min.js') }}"></script>
 <script src="{{ asset('assets/js/scrollax.min.js') }}"></script>
-<script src="{{ asset('assets/js/google-map.js') }}"></script> -->
-<!-- <script src="{{ asset('assets/js/main.js') }}"></script> -->
+<script src="{{ asset('assets/js/google-map.js') }}"></script> 
+<script src="{{ asset('assets/js/main.js') }}"></script> 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
